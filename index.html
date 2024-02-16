@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://threejs.org/build/three.min.js"></script>
+    <script src="house.js"></script>
+    <script src="house2.js"></script>
+
+  </head>
+  <body>
+    <a-scene>
+      <a-entity house2="width: 1; height: 2" position="0 0 -3"></a-entity>
+      <a-box position="0 -2 -5" width="2" height="2" depth="2" rotation="0 45 0" color="#FF0000"></a-box>
+      <a-octahedron position="0 -1 -5" radius="1.5" rotation="0 0 0" color="#0000FF"></a-octahedron>
+      
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>
