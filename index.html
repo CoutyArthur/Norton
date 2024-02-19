@@ -1,17 +1,25 @@
+<!DOCTYPE html>
 <html>
   <head>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://threejs.org/build/three.min.js"></script>
     <script src="house.js"></script>
-    <script src="house2.js"></script>
+    <script src="road.js"></script>
 
   </head>
   <body>
     <a-scene>
-      <a-entity house2="width: 1; height: 2" position="0 0 -3"></a-entity>
-      <a-box position="0 -2 -5" width="2" height="2" depth="2" rotation="0 45 0" color="#FF0000"></a-box>
-      <a-octahedron position="0 -1 -5" radius="1.5" rotation="0 0 0" color="#0000FF"></a-octahedron>
-      
+      <a-camera rotation="-90 0 0"></a-camera>
+      <a-entity house="width: 2.5; height: 2; color: #FF0000" position="-12 -40 -13"></a-entity>
+      <a-entity house="width: 2.5; height: 2; color: #00FF00" position="-8 -40 17"></a-entity>
+      <a-entity house="width: 2.5; height: 2; color: #0000FF" position="12 -40 -15"></a-entity>
+      <a-entity house="width: 2.5; height: 2; color: #FFFFFF" position="11 -40 15"></a-entity>
+      <a-entity road="width: 4; position_start: -15 -40 -10; position_end: 20 -40 10"></a-entity>
+      <a-plane
+      position="0 -40 0"
+      rotation="-90 0 0"
+      width="40"
+      height="40"
+      color="#7BC8A4" ></a-plane>
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
   </body>

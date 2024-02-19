@@ -10,8 +10,8 @@ AFRAME.registerComponent('house',{
     var data = this.data;
     var el = this.el;
     
-    var width = data.width/2
-    var height = data.height/2
+    var width = data.width/2;
+    var height = data.height/2;
      
    // Créer une boîte
     const boxGeometry = new THREE.BoxGeometry(data.width, data.height, data.width);
@@ -19,7 +19,7 @@ AFRAME.registerComponent('house',{
     // Créer une géométrie de pyramide
     const pyramidGeometry = new THREE.BufferGeometry();
     const pyramidVertices = new Float32Array([
-      0, data.height, 0,   // Sommet haut
+      0, height, 0,   // Sommet haut
       -width, 0,width,  // Sommet base avant gauche
       width, 0, width,   // Sommet base avant droit
       width, 0, -width,  // Sommet base arriere droit
@@ -51,7 +51,7 @@ AFRAME.registerComponent('house',{
     
   },
   
-  tick: function (time, timeDelta) {
+  /*tick: function (time, timeDelta) {
     
     var currentRotation = this.el.object3D.rotation;
     
@@ -61,6 +61,6 @@ AFRAME.registerComponent('house',{
       z: currentRotation.z
     });
     
-  }
+  }*/
   
 })
