@@ -21,10 +21,8 @@ AFRAME.registerComponent('car',{
         loader.load(data.model, 
             function (gltf) {
 
-                //gltf.scene.position.set(0,0,0);
-                gltf.scene.scale.set(0.08,0.08,0.08);
-                // Ajout du modèle à la scène A-Frame
-                //el.setObject3D('mesh', gltf.scene);
+                gltf.scene.position.set(0,-38,0);
+                gltf.scene.scale.set(2,2,2);
                 groupeCar.add(gltf.scene);
 
             });
@@ -50,7 +48,7 @@ AFRAME.registerComponent('car',{
         
         this.el.setObject3D('groupeCar', groupeCar);
 
-        this.el.getObject3D('groupeCar').position.set(data.position_start.x*conv,0,data.position_start.z*conv);
+        this.el.getObject3D('groupeCar').position.set(data.position_start.x,data.position_start.y,data.position_start.z);
 
     },
 
@@ -58,9 +56,6 @@ AFRAME.registerComponent('car',{
 
         const data = this.data
         var actual_position = this.el.getObject3D('groupeCar').position;
-        const unit_conv = (1/24);
-        actual_position.x /= unit_conv;
-        actual_position.z /= unit_conv;
         speed = 0.05       
         const coef_dir = (data.position_end.z-data.position_start.z)/(data.position_end.x-data.position_start.x);
         const ordonee_orig = data.position_start.z - coef_dir*data.position_start.x;
@@ -86,8 +81,7 @@ AFRAME.registerComponent('car',{
 
         }
         
-        actual_position.x *= unit_conv;
-        actual_position.z *= unit_conv;
+
 
         this.el.getObject3D('groupeCar').position.set(actual_position.x,0,actual_position.z);
 
