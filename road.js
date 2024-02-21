@@ -1,10 +1,10 @@
 AFRAME.registerComponent('road',{
 
     schema: {
-      width: {type:'number', default: 1},
-      position_start: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
-      position_end: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
-      color: {type: 'color', default: '#AAAAAA'}
+        width: {type:'number', default: 1},
+        position_start: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
+        position_end: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
+        color: {type: 'color', default: '#AAAAAA'}
     },
 
     init: function () {
@@ -16,7 +16,7 @@ AFRAME.registerComponent('road',{
 
         var sens_angle = 0
 
-        //position du centre de la route
+        //position du centre de la route et orientation de l'angle de la route
 
         if (data.position_start.x > data.position_end.x){
 
@@ -59,8 +59,6 @@ AFRAME.registerComponent('road',{
         var cos = adjacent / distance;
         var angle = Math.acos(cos)
         angle *= sens_angle;
-
-        console.log(x_centre, z_centre);
 
         this.cube.rotation.set(0, angle, 0)
         
