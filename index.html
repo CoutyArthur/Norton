@@ -6,6 +6,8 @@
     <script src="road.js"></script>
     <script src="car.js"></script>
     <script src="simple_car.js"></script>
+    <script src="car_loop.js"></script>
+    <script src="road_generator.js"></script>
 
   </head>
   <body>
@@ -20,14 +22,21 @@
       <a-entity house="width: 2.5; height: 2; color: #00FF00" position="-8 -38 17"></a-entity>
       <a-entity house="width: 2.5; height: 2; color: #0000FF" position="12 -38 -15"></a-entity>
       <a-entity house="width: 2.5; height: 2; color: #FFFFFF" position="11 -38 15"></a-entity>
+
       <a-entity road="width: 4; position_start: -7 -40 5; position_end: 20 -40 10"></a-entity>
-      <a-entity simple_car="position_start: -7 -38 5; position_end: 20 -38 10"></a-entity>
+
+      <!--<a-entity simple_car="position_start: -7 -38 5; position_end: 20 -38 10"></a-entity> -->
       <a-entity car="model: #car1; position_start: -7 -38 5; position_end: 20 -38 10"></a-entity>
+
+      <a-entity id="carScene"></a-entity>
+      <a-entity id="roadScene"></a-entity>
+
       <a-box position = "20 -38 20" color = "#000000"></a-box>
       <a-box position = "20 -38 10" color = "#000000"></a-box>
       <a-box position = "20 -38 0" color = "#000000"></a-box>
       <a-box position = "20 -38 -10" color = "#000000"></a-box>
       <a-box position = "20 -38 -20" color = "#000000"></a-box>
+
       <a-plane
       position="0 -40 0"
       rotation="-90 0 0"

@@ -14,18 +14,20 @@ AFRAME.registerComponent('road',{
 
         var x_centre = 0;
 
-        var sens_angle = 0
+        var sens_angle = 1
 
         //position du centre de la route et orientation de l'angle de la route
 
         if (data.position_start.x > data.position_end.x){
 
             x_centre = data.position_start.x - (data.position_start.x - data.position_end.x)/2;
+            sens_angle *= -1
 
         }
         else{
 
             x_centre = data.position_end.x - (data.position_end.x - data.position_start.x)/2;
+            sens_angle *= 1
 
         }
 
@@ -34,13 +36,13 @@ AFRAME.registerComponent('road',{
         if (data.position_start.z > data.position_end.z){
 
             z_centre = data.position_start.z - (data.position_start.z - data.position_end.z)/2;
-            sens_angle = -1
+            sens_angle *= -1
 
         }
         else{
 
             z_centre = data.position_end.z - (data.position_end.z - data.position_start.z)/2;
-            sens_angle = 1
+            sens_angle *= 1
 
         }
 

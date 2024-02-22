@@ -26,15 +26,18 @@ AFRAME.registerComponent('car',{
                 groupeCar.add(gltf.scene);
 
             });
-
+        
+        var orientation = 0;
         if (data.position_start.z > data.position_end.z){
 
             sens_angle = -1
+
     
         }
         else{
     
             sens_angle = 1
+            orientation = Math.PI;
     
         }
 
@@ -44,7 +47,7 @@ AFRAME.registerComponent('car',{
         var angle = Math.acos(cos)
         angle *= sens_angle;
         
-        groupeCar.rotateY(angle+Math.PI);
+        groupeCar.rotateY(angle+orientation);
         
         this.el.setObject3D('groupeCar', groupeCar);
 
@@ -68,6 +71,10 @@ AFRAME.registerComponent('car',{
                 actual_position.z = coef_dir*actual_position.x + ordonee_orig;
 
             }
+            else{
+
+                this.el.getObject3D('groupeCar').visible = false;
+            }
 
         }
         if (data.position_end.x < data.position_start.x){
@@ -78,11 +85,13 @@ AFRAME.registerComponent('car',{
                 actual_position.z = coef_dir*actual_position.x + ordonee_orig;
 
             }
+            else{
+
+                this.el.getObject3D('groupeCar').visible = false;
+            }
 
         }
         
-
-
         this.el.getObject3D('groupeCar').position.set(actual_position.x,0,actual_position.z);
 
     }
