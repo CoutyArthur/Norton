@@ -4,7 +4,8 @@ AFRAME.registerComponent('road',{
         width: {type:'number', default: 1},
         position_start: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
         position_end: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
-        color: {type: 'color', default: '#000000'}
+        color: {type: 'color', default: '#000000'},
+        basicCube: {typr: 'Mesh'}
     },
 
     init: function () {
@@ -51,9 +52,11 @@ AFRAME.registerComponent('road',{
         //ensuite on place la route grace au cordoonnee du centre de la route récuperer au dessus
         const distance = Math.sqrt(Math.pow(data.position_end.x - data.position_start.x, 2) + Math.pow(data.position_end.z - data.position_start.z, 2));
 
-        const boxGeometry = new THREE.BoxGeometry(data.width, 2, distance);
+        /*const boxGeometry = new THREE.BoxGeometry(data.width, 2, distance);
         const material = new THREE.MeshBasicMaterial({ color: 0x000000});
-        this.cube = new THREE.Mesh(boxGeometry, material);
+        this.cube = new THREE.Mesh(boxGeometry, material);*/
+        this.cube = data.basicCube;
+        this.cube.scale.set(data.width, 2, distance);
         this.cube.position.set(x_centre, data.position_start.y, z_centre);
 
         //angle de la route
