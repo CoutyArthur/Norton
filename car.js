@@ -3,9 +3,8 @@ AFRAME.registerComponent('car',{
     schema: {
 
         model: { type: 'asset' },
-        position_start: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
-        position_end: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
-
+        positionStart: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
+        positionEnd: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
     },
 
     init: function () {
@@ -14,77 +13,90 @@ AFRAME.registerComponent('car',{
         const el = this.el;
         const data = this.data;
         const groupeCar = new THREE.Group();
-        const conv = (1/24);
 
 
-
+        //on load le model, on le place au centre, on le redimensionne et on l'ajoute au groupe groupeCar
         loader.load(data.model, 
             function (gltf) {
 
-                gltf.scene.position.set(0,-38,0);
+                gltf.scene.position.set(0,2,0);
                 gltf.scene.scale.set(2,2,2);
                 groupeCar.add(gltf.scene);
 
             });
         
+        //on gere l'orientation suivant si la position z du debut de la route ets superieur ou non a la position e de la fin de la route
         var orientation = 0;
-        if (data.position_start.z > data.position_end.z){
+        var sens_angle = 0;
+        if (data.positionStart.z > data.positionEnd.z){
 
-            sens_angle = -1
+            sens_angle = -1;
 
     
         }
         else{
     
-            sens_angle = 1
+            sens_angle = 1;
             orientation = Math.PI;
     
         }
 
-        const distance = Math.sqrt(Math.pow(data.position_end.x - data.position_start.x, 2) + Math.pow(data.position_end.z - data.position_start.z, 2)); //hypoténus
-        adjacent = Math.abs(data.position_start.z - data.position_end.z);
+        //on trouve l'angle de la voiture grace au cosinus entre dans le triangle route, axe z, axe x
+        var distance = Math.sqrt(Math.pow(data.positionEnd.x - data.positionStart.x, 2) + Math.pow(data.positionEnd.z - data.positionStart.z, 2)); //hypoténus
+        adjacent = Math.abs(data.positionStart.z - data.positionEnd.z);
         var cos = adjacent / distance;
-        var angle = Math.acos(cos)
+        var angle = Math.acos(cos);
         angle *= sens_angle;
         
+        //on rotate le groupe pour etre dans le bon sens
         groupeCar.rotateY(angle+orientation);
         
         this.el.setObject3D('groupeCar', groupeCar);
 
-        this.el.getObject3D('groupeCar').position.set(data.position_start.x,data.position_start.y,data.position_start.z);
+        //on positionne le groupe au debut de la route
+        this.el.getObject3D('groupeCar').position.set(data.positionStart.x,data.positionStart.y,data.positionStart.z);
 
     },
 
     tick: function (time, timeDelta){
 
-        const data = this.data
+        const data = this.data;
+        //on recupere laposition actuel du groupe
         var actual_position = this.el.getObject3D('groupeCar').position;
-        speed = 0.05       
-        const coef_dir = (data.position_end.z-data.position_start.z)/(data.position_end.x-data.position_start.x);
-        const ordonee_orig = data.position_start.z - coef_dir*data.position_start.x;
+        speed = 0.05
 
-        if (data.position_start.x < data.position_end.x){
+        //on trouve l'equation de la droite de la forme ax+b (coef_dir*x + ordonnee_orig)
+        var coef_dir = (data.positionEnd.z-data.positionStart.z)/(data.positionEnd.x-data.positionStart.x);
+        var ordonee_orig = data.positionStart.z - coef_dir*data.positionStart.x;
 
-            if(actual_position.x < data.position_end.x){
+        //si la voiture doit aller de la gauche vers le droite, on incremente x
+        if (data.positionStart.x < data.positionEnd.x){
+
+            //si la voiture n'a pas atteint l'arrivee on la fait avancer
+            if(actual_position.x < data.positionEnd.x){
 
                 actual_position.x += speed;
                 actual_position.z = coef_dir*actual_position.x + ordonee_orig;
 
             }
+            //si la voiture a atteint l'arrivee, elle ne bouge plus et on la rend invisible
             else{
 
                 this.el.getObject3D('groupeCar').visible = false;
             }
 
         }
-        if (data.position_end.x < data.position_start.x){
+        //si la voiture doit aller de la droite vers le gauche, on decremente x
+        if (data.positionEnd.x < data.positionStart.x){
 
-            if(actual_position.x > data.position_end.x){
+            //si la voiture n'a pas atteint l'arrivee on la fait avancer
+            if(actual_position.x > data.positionEnd.x){
 
                 actual_position.x -= speed;
                 actual_position.z = coef_dir*actual_position.x + ordonee_orig;
 
             }
+            //si la voiture a atteint l'arrivee, elle ne bouge plus et on la rend invisible
             else{
 
                 this.el.getObject3D('groupeCar').visible = false;
@@ -92,6 +104,7 @@ AFRAME.registerComponent('car',{
 
         }
         
+        //on place la voiture à sa nouvelle position
         this.el.getObject3D('groupeCar').position.set(actual_position.x,0,actual_position.z);
 
     }

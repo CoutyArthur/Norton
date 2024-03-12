@@ -1,30 +1,26 @@
-function road_generator(){
+import { coordonnee_final} from './file_reader.js';
 
-    const tableauPosition_start = [
-        new THREE.Vector3(-7, -40, 5),
-        new THREE.Vector3(-15, -40, 0)
-        
-    ];
+function road_generator(tableauPosition){
 
-    const tableauPosition_end = [
-        new THREE.Vector3(20, -40, 10),
-        new THREE.Vector3(5, -40, -15)
-        
-    ];
+    /*const tableauPosition = [
+        [new THREE.Vector3(-7, 0, 5), new THREE.Vector3(20, 0, 10),],
+        [new THREE.Vector3(-15, 0, 0), new THREE.Vector3(5, 0, -15)]
 
-    console.log();
+    ];*/
 
-    for (var i=0; i<=tableauPosition_start.length; i++){
 
-        const newRoad = document.createElement('a-entity');
+    for (var i=0; i<tableauPosition.length; i++){
+        for (var j=1; j<tableauPosition[i].length; j++){
 
-        newRoad.setAttribute('road', {width: 4, position_start: tableauPosition_start[i], position_end: tableauPosition_end[i]});
-        const roadScene = document.getElementById('roadScene');
-        roadScene.appendChild(newRoad);
+            const newRoad = document.createElement('a-entity');
 
+            newRoad.setAttribute('road', {width: 0.5, position_start: tableauPosition[i][j-1], position_end: tableauPosition[i][j]});
+            const roadScene = document.getElementById('roadScene');
+            roadScene.appendChild(newRoad);
+        }
     }
 
 }
 setTimeout(function() {
-    road_generator();
+    road_generator(coordonnee_final);
 }, 10);
