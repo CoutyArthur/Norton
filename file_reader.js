@@ -68,7 +68,7 @@ function tri_data(troncon_data, noeud_data){
   var yma = coordonnee_final[0][0].z;
   var ymi = coordonnee_final[0][0].z;
 
-  for(var i=0; i<coordonnee_final.length; i++){
+  /*for(var i=0; i<coordonnee_final.length; i++){
 
     for(var j=0; j<2; j++){
 
@@ -98,7 +98,7 @@ function tri_data(troncon_data, noeud_data){
 
     }
   }
-  //console.log(xma,xmi,yma,ymi);
+  console.log(xma,xmi,yma,ymi);*/
   return coordonnee_final;
 }
 
@@ -151,7 +151,7 @@ function mappage(x, y, a_max, a_min, b_max, b_min, x_max, x_min, y_max, y_min){
   var new_x = a_min + proportion_x*(a_max-a_min);
   var new_y = b_min + proportion_y*(b_max-b_min);
 
-  return (new THREE.Vector3(new_x, 0, new_y));
+  return (new THREE.Vector3(new_x, 1, new_y));
 }
 
 export var coordonnee_final = tri_data(tableau_troncon, tableau_noeud);
