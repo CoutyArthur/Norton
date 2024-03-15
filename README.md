@@ -8,4 +8,6 @@ Aujourdhui j'ai fais en sorte que les routes suivent correctement l'orientation 
 données routes :
 -visum, transcad = logiciel payant cher
 -route 500 => base de donnée routière qui à l'air complète mais trop gros à ouvrir
--
+
+-15/03
+![map_bordeaux](image.png) framerate entre 100 et 120

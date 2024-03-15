@@ -44,7 +44,6 @@ AFRAME.registerComponent('house',{
     
     this.pyramid = new THREE.Mesh(pyramidGeometry, material);
     this.pyramid.position.set(0, height, 0);
-    
     this.el.setObject3D('cube', this.cube);
     this.el.setObject3D('pyramid', this.pyramid);
       

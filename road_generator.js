@@ -8,17 +8,11 @@ function road_generator(tableauPosition){
         [new THREE.Vector3(-150, 1, 0), new THREE.Vector3(150, 1, 0)]
 
     ];*/
-    
-    for (var i=0; i<tableauPosition.length; i++){
-        for (var j=1; j<tableauPosition[i].length; j++){
-
-            const newRoad = document.createElement('a-entity');
-            newRoad.setAttribute('road', {width: 0.5, position_start: tableauPosition[i][j-1], position_end: tableauPosition[i][j]});
-            const roadScene = document.getElementById('roadScene');
-            roadScene.appendChild(newRoad);
-            
-        }
-    }
+    console.log(tableauPosition[0]);
+    const newRoad = document.createElement('a-entity');
+    newRoad.setAttribute('road', {width: 0.5, positions: tableauPosition});
+    const roadScene = document.getElementById('roadScene');
+    roadScene.appendChild(newRoad);
     
 
 }

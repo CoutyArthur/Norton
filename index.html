@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <script type="importmap">
+      {
+          "imports": {
+              "three": "https://unpkg.com/three@0.138.0/build/three.module.js"
+          }
+      }
+    </script>
+
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script type="module" src="p5/data/noeud.js"></script>
     <script type="module" src="p5/data/troncon.js"></script>
     <script type="module" src="file_reader.js"></script>
     <script src="house.js"></script>
-    <script src="road.js"></script>
+    <script type="module" src="road.js"></script>
     <script src="car.js"></script>
     <script src="simple_car.js"></script>
     <script src="car_loop.js"></script>

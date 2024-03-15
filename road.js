@@ -1,9 +1,12 @@
+import * as THREE from './node_modules/three/build/three.module.js';
+import * as BufferGeometryUtils from './node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
+
+
 AFRAME.registerComponent('road',{
 
     schema: {
         width: {type:'number', default: 0.5},
-        position_start: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
-        position_end: { type: 'vec3', default: { x: 0, y: 0, z: 0 } },
+        positions: { type: 'array'},
         color: {type: 'color', default: '#000000'},
     },
 
@@ -11,18 +14,40 @@ AFRAME.registerComponent('road',{
 
         var data =this.data;
         var el = this.el;
+        var lines = new THREE.Object3D;
 
-        const points = [data.position_start, data.position_end];
+        var linesGeometries = [];
+
+        console.log(data.positions.length);
+        for(var i=0; i<data.positions.length; i++){
+
+            var lineGeometry = new THREE.BufferGeometry().setFromPoints([data.positions[i][0], data.positions[i][1]]);
+            linesGeometries.push(lineGeometry);
+
+        }
+
+        const mergedGeometry = BufferGeometryUtils.mergeGeometries(linesGeometries, false);
 
         const lineMaterial = new THREE.LineBasicMaterial({
             color: data.color,
             linewidth: data.width
-        })
-        var lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+        });
 
-        const line = new THREE.Line(lineGeometry, lineMaterial);
-        this.el.setObject3D('line', line);
+        const mesh = new THREE.LineSegments(mergedGeometry, lineMaterial);
+        lines.add(mesh);
 
+        var scene = this.el.sceneEl.object3D;
+
+        scene.add(lines);
+
+        /*console.log(mergedGeometry.type, mesh.type);
+        console.log(mesh instanceof THREE.Object3D);
+        if(mesh instanceof THREE.Object3D){
+            el.setObject3D('mesh', mesh);
+        }
+        else;
+            console.log("dommage")
+*/
 
 
         /*var x_centre = 0;
