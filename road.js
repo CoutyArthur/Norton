@@ -1,5 +1,5 @@
-import * as THREE from '/node_modules/three/build/three.module.js';
-import * as BufferGeometryUtils from '/node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
+import * as THREE from '/.gitignore/node_modules/three/build/three.module.js';
+import * as BufferGeometryUtils from '/.gitignore/node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
 
 
 AFRAME.registerComponent('road',{
