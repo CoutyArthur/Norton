@@ -11,8 +11,8 @@ function road_generator(tableauPosition){
     console.log(tableauPosition[0]);
     const newRoad = document.createElement('a-entity');
     newRoad.setAttribute('road', {width: 0.5, positions: tableauPosition});
-    const roadScene = document.getElementById('roadScene');
-    roadScene.appendChild(newRoad);
+    const scene = document.querySelector('a-scene');
+    scene.appendChild(newRoad);
     
 
 }
