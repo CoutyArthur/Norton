@@ -19,7 +19,6 @@ AFRAME.registerComponent('road',{
 
         var linesGeometries = [];
 
-        console.log(data.positions.length);
         for(var i=0; i<data.positions.length; i++){
 
             var lineGeometry = new THREE.BufferGeometry().setFromPoints([data.positions[i][0], data.positions[i][1]]);
