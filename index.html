@@ -17,6 +17,7 @@
     <script src="house.js"></script>
     <script type="module" src="road.js"></script>
     <script src="car.js"></script>
+    <script src="carTest.js"></script>
     <script src="simple_car.js"></script>
     <script type="module" src="car_loop.js"></script>
     <script type ="module" src="road_generator.js"></script>
@@ -32,9 +33,9 @@
 
       </a-assets>
 
-      <a-entity id="cameraRig" position="0 20 0">
-        <a-camera></a-camera>
-    </a-entity>
+      <a-entity id="cameraWrapper" position="0 20 0" name="wrapper">
+        <a-camera id="camera" ></a-camera>
+      </a-entity>
 
       <!--<a-entity house="width: 2.5; height: 2; color: #FF0000" position="-12 0 -13"></a-entity>
       <a-entity house="width: 2.5; height: 2; color: #00FF00" position="-8 0 17"></a-entity>

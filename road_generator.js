@@ -8,6 +8,7 @@ function road_generator(tableauPosition){
         [new THREE.Vector3(-150, 1, 0), new THREE.Vector3(150, 1, 0)]
 
     ];*/
+
     const newRoad = document.createElement('a-entity');
     newRoad.setAttribute('road', {width: 0.5, positions: tableauPosition});
     const scene = document.querySelector('a-scene');

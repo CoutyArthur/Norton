@@ -8,8 +8,9 @@ function preload(){
 function setup() {
   createCanvas(400, 400);
 
-  tronconCSV(troncon_file);
-  noeudsCSV(noeuds_file);
+  //tronconCSV(troncon_file);
+  //noeudsCSV(noeuds_file);
+  frequencyCSV(troncon_file);
   console.log("finished");
 }
 
@@ -160,6 +161,56 @@ function noeudsCSV(data){
     tableau += "];";
 
     let writer = createWriter('noeud.js');
+
+    writer.print(tableau);
+    
+    writer.close();
+}
+
+function frequencyCSV(data){
+
+    var tableau = "export var tableau_frequency = [ \n";
+
+    var val = "";
+    var temp = "";
+
+    for (var i=1; i<data.length; i++){
+
+        if(data[i] == "")
+            continue;
+
+        var semi_column = 0;
+        val = "";
+     
+        for (var j=0; j<data[i].length; j++){
+
+            if(semi_column == 5){
+
+                if(data[i][j] == ";"){
+
+                    val += ",\n";
+                    tableau += val;
+                    break;
+                
+                }
+
+                else
+                    val += data[i][j];
+
+            }
+
+            else if(data[i][j] == ";")
+                semi_column ++;
+
+        }
+
+
+    }
+
+    tableau += "];"
+    console.log(tableau);
+
+    let writer = createWriter('frequency.js');
 
     writer.print(tableau);
     

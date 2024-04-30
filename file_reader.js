@@ -1,7 +1,31 @@
-import { tableau_noeud} from './p5/data/noeud.js';
-import { tableau_troncon} from './p5/data/troncon.js';
+import {tableau_noeud} from './p5/data/noeud.js';
+import {tableau_troncon} from './p5/data/troncon.js';
+import {tableau_frequency} from './p5/data/frequency.js';
 
-function tri_data(troncon_data, noeud_data){
+function tri_data(troncon_data, noeud_data, frequency_data){
+
+  console.log(troncon_data.length);
+
+  for(var i=0; i<troncon_data.length; i++){
+
+    var temp = troncon_data[i];
+
+    for (var j=i+1; j<troncon_data.length; j++){
+
+      if(troncon_data[j][0] == troncon_data[i][1] && troncon_data[j][1] == troncon_data[i][0]){
+
+        troncon_data.splice(j,1);
+        frequency_data.splice(j,1);
+        break;
+
+      }
+
+    }
+
+  }
+
+  console.log(troncon_data.length);
+
   //x et y => longitude et lattitude donnée origine
   //a(x) et b(y) => coordonnée du plan html
 
@@ -42,7 +66,9 @@ function tri_data(troncon_data, noeud_data){
 
     }
 
-  } 
+  }
+
+  console.log(x_max, x_min, y_max, y_min);
 
   var coordonnee_final = [];
 
@@ -56,50 +82,34 @@ function tri_data(troncon_data, noeud_data){
       temp_coo.push(mappage(temp[j][1], temp[j][2], a_max, a_min, b_max, b_min, x_max, x_min, y_max, y_min));
     
     }
-
     coordonnee_final.push(temp_coo);
     
   } 
 
+  var frequency = mappage_frequency(frequency_data);
+
   //console.log(coordonnee_final.length, troncon_data.length);
 
-  var xma = coordonnee_final[0][0].x;
-  var xmi = coordonnee_final[0][0].x;
-  var yma = coordonnee_final[0][0].z;
-  var ymi = coordonnee_final[0][0].z;
+  var mem_start;
+  var mem_end;
 
   /*for(var i=0; i<coordonnee_final.length; i++){
 
-    for(var j=0; j<2; j++){
+    mem_start = coordonnee_final[i][0];
+    mem_end = coordonnee_final[i][1];
+    for (var j=i; j<coordonnee_final.length; j++){
 
-      if (coordonnee_final[i][j].x > xma){
-
-        xma = coordonnee_final[i][j].x;
-
-      }
-
-      if (coordonnee_final[i][j].x < xmi){
-
-        xmi = coordonnee_final[i][j].x;
-
-      }
-
-      if (coordonnee_final[i][j].z > yma){
-
-        yma = coordonnee_final[i][j].z;
-
-      }
-
-      if (coordonnee_final[i][j].z < ymi){
-
-        ymi = coordonnee_final[i][j].z;
-
-      }
+      if(mem_start == coordonnee_final[j][0] && mem_end == coordonnee_final[j][1]);
+        console.log(mem_start, "   ", coordonnee_final[j][0]);
+        console.log(mem_end, "    ", coordonnee_final[j][1])
+        console.log("---------------");
 
     }
-  }
-  console.log(xma,xmi,yma,ymi);*/
-  return coordonnee_final;
+  }*/
+
+  var temp = [coordonnee_final, frequency];
+
+  return temp;
 }
 
 function rechercheNoeud(noeud_cherche, noeud_data){
@@ -151,7 +161,42 @@ function mappage(x, y, a_max, a_min, b_max, b_min, x_max, x_min, y_max, y_min){
   var new_x = a_min + proportion_x*(a_max-a_min);
   var new_y = b_min + proportion_y*(b_max-b_min);
 
-  return (new THREE.Vector3(new_x, 1, new_y));
+  return (new THREE.Vector3(new_x, 0.1, new_y));
 }
 
-export var coordonnee_final = tri_data(tableau_troncon, tableau_noeud);
+function mappage_frequency(frequency_data){
+
+  var a_max = 1.5;
+  var a_min = 0.25;
+
+  var f_max = frequency_data[0];
+  var f_min = frequency_data[0];
+
+  for(var i=0; i<frequency_data.length; i++){
+
+    if(frequency_data[i] > f_max)
+      f_max = frequency_data[i];
+
+    else if(frequency_data[i] < f_min)
+      f_min = frequency_data[i];
+
+  }
+  console.log(f_max, f_min);
+  var frequency = [];
+
+  for(var i=0; i<frequency_data.length; i++){
+
+    var proportion = (frequency_data[i]-f_min)/(f_max-f_min);
+    var new_f = a_min + proportion*(a_max-a_min);
+    frequency.push(new_f);
+  }
+
+  return frequency;
+}
+export var coordonnee_final;
+export var frequency;
+var temp = tri_data(tableau_troncon, tableau_noeud, tableau_frequency);
+
+coordonnee_final = temp[0];
+frequency = temp[1];
+

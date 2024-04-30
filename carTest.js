@@ -1,4 +1,4 @@
-AFRAME.registerComponent('car',{
+AFRAME.registerComponent('cartest',{
 
     schema: {
 

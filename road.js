@@ -26,6 +26,8 @@ AFRAME.registerComponent('road',{
 
         }
 
+
+
         const mergedGeometry = BufferGeometryUtils.mergeGeometries(linesGeometries, false);
 
         const lineMaterial = new THREE.LineBasicMaterial({

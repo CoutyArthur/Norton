@@ -11,3 +11,6 @@ données routes :
 
 -15/03
 ![map_bordeaux](image.png) framerate entre 100 et 120
+
+-19/03
+pour que la camera soit identique (rotation, position, etc.) en web et en VR il faut la wrapper cf index.html ligne 35-37
