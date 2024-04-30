@@ -4,7 +4,7 @@ import {frequency} from './file_reader.js';
 function createCar(val_start, val_end, val_frequency) {
 
     var newCar = document.createElement('a-entity');
-    newCar.setAttribute('cartest', {positionStart: val_start, positionEnd: val_end, taille: val_frequency});
+    newCar.setAttribute('car', {positionStart: val_start, positionEnd: val_end, taille: val_frequency});
     const scene = document.querySelector('a-scene');
     scene.appendChild(newCar);
     return newCar; 
