@@ -58,6 +58,6 @@ function loopCar(tableauPosition, tableauFrequency){
 
 
 setTimeout (function(){
-    loopCar(coordonnee_final, frequency);
+    //loopCar(coordonnee_final, frequency);
 },10);
 

@@ -24,7 +24,7 @@ function changeColor(){
         btnColorChange.setAttribute('id', 'btnColorChange');
         btnColorChange.setAttribute('width', '13/5');
         btnColorChange.setAttribute('height', '7/5');
-        btnColorChange.setAttribute('color', '#FFFFFF');
+        btnColorChange.setAttribute('color', '#FF0000');
 
     var texte = document.createElement('a-text');
         texte.setAttribute('value', 'Changer de couleur');
@@ -36,6 +36,8 @@ function changeColor(){
     btnColorChange.appendChild(texte);
     console.log(btnColorChange.object3D);
     billBoard.children.push(btnColorChange.object3D);
+    billBoard.children[0].visible = true;
+    billBoard.children[0].position.z += 0.2;
     console.log(billBoard);
 
 }

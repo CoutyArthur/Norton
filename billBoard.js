@@ -84,3 +84,26 @@ window.addEventListener('keydown', function(evt){
     }
 })
 
+const rightController = document.querySelector('#rightController');
+
+rightController.addEventListener('buttondown', function(evt){
+
+    if(evt.detail.id == 4){
+
+        const scene = document.querySelector('a-scene').object3D;
+        var camera = document.querySelector('#cameraWrapper').object3D;
+        var billBoard;
+        for (var i=0; i<scene.children.length; i++){
+    
+            if (scene.children[i].name == 'billBoard'){
+        
+                    billBoard = scene.children[i];
+                    break;
+        
+                }
+        
+            }
+
+    }
+})
+
