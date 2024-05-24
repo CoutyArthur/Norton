@@ -97,12 +97,29 @@ rightController.addEventListener('buttondown', function(evt){
     
             if (scene.children[i].name == 'billBoard'){
         
-                    billBoard = scene.children[i];
-                    break;
-        
-                }
+                billBoard = scene.children[i];
+                break;
         
             }
+        
+        }
+
+        if (billBoard.visible){
+
+            billBoard.visible = false;
+
+        }
+        else{
+
+            billBoard.position.copy( camera.children[0].position );
+            billBoard.rotation.copy( camera.children[0].rotation );
+            billBoard.position.y += 20;
+            billBoard.updateMatrix();
+            billBoard.translateZ( - 10 );
+        
+            billBoard.visible = true;
+
+        }
 
     }
 })
