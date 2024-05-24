@@ -27,7 +27,7 @@ function afficheBillBoard(){
 }
 
 setTimeout (function(){
-    afficheBillBoard();
+    //afficheBillBoard();
 },10);
 
 
@@ -84,9 +84,10 @@ window.addEventListener('keydown', function(evt){
     }
 })
 
-const rightController = document.querySelector('#rightController');
+//const rightController = document.querySelector('#rightController');
+//console.log(rightController);
 
-rightController.addEventListener('buttondown', function(evt){
+/*rightController.addEventListener('buttondown', function(evt){
 
     if(evt.detail.id == 4){
 
@@ -122,5 +123,5 @@ rightController.addEventListener('buttondown', function(evt){
         }
 
     }
-})
+})*/
 

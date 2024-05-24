@@ -43,5 +43,5 @@ function changeColor(){
 }
 
 setTimeout (function(){
-    changeColor();
+    //changeColor();
 },10);
