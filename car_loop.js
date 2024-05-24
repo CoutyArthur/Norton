@@ -40,15 +40,18 @@ function loopCar(tableauPosition, tableauFrequency){
             car.visible = false;
             car.position.set(0,10,-25);
             scene.add(car);
+            var count = 0;
         for(var i=0; i<tableauPosition.length; i++){
-
-            if(Math.sqrt(Math.pow(tableauPosition[i][1].x - tableauPosition[i][0].x, 2) + Math.pow(tableauPosition[i][1].y - tableauPosition[i][0].y, 2)) > 0.5){
-
+            count ++;
+            if(Math.sqrt(Math.pow(tableauPosition[i][1].x - tableauPosition[i][0].x, 2) + Math.pow(tableauPosition[i][1].y - tableauPosition[i][0].y, 2)) > 1.3){
+                
                 newCar = createCar(tableauPosition[i][0], tableauPosition[i][1], tableauFrequency[i]).object3D;
                 //console.log(newCar);
                 groupCar.add(newCar);
             }       
         }
+
+        console.log("count", count);
 
         scene.add(groupCar);
         console.log(scene);
@@ -58,6 +61,6 @@ function loopCar(tableauPosition, tableauFrequency){
 
 
 setTimeout (function(){
-    //loopCar(coordonnee_final, frequency);
+    loopCar(coordonnee_final, frequency);
 },10);
 
