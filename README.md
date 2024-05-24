@@ -10,7 +10,7 @@ données routes :
 -route 500 => base de donnée routière qui à l'air complète mais trop gros à ouvrir
 
 -15/03
-![map_bordeaux](image.png) framerate entre 100 et 120
+![map_bordeaux](images/map_bordeaux.png) framerate entre 100 et 120
 
 -19/03
 pour que la camera soit identique (rotation, position, etc.) en web et en VR il faut la wrapper cf index.html ligne 35-37

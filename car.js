@@ -9,6 +9,7 @@ AFRAME.registerComponent('car',{
 
     init: function () {
         // Accès au composant pour utiliser GLTFLoader
+        
         const el = this.el;
         const data = this.data;
         var scene = document.querySelector('a-scene').object3D;
@@ -18,7 +19,7 @@ AFRAME.registerComponent('car',{
 
         for(var i=0; i<scene.children.length; i++){
 
-            if (scene.children[i].name == 'car'){
+            if (scene.children[i].name == 'sphere'){
 
                 carOrigine = scene.children[i];
                 break;
@@ -32,7 +33,11 @@ AFRAME.registerComponent('car',{
         this.actual_position = data.positionStart.clone();
 
         car.position.set(0,carHeight,0);
-        car.scale.set(data.taille,data.taille,data.taille);
+        car.scale.set(carHeight,carHeight,carHeight);
+        var red = data.taille;
+        var blue = (255-data.taille);
+        const material = new THREE.MeshBasicMaterial({ color: new THREE.Color(red, 0, blue) });
+        car.material = material;
 
         
         //on gere l'orientation suivant si la position z du debut de la route ets superieur ou non a la position e de la fin de la route

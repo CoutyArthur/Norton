@@ -166,8 +166,8 @@ function mappage(x, y, a_max, a_min, b_max, b_min, x_max, x_min, y_max, y_min){
 
 function mappage_frequency(frequency_data){
 
-  var a_max = 1.5;
-  var a_min = 0.25;
+  var a_max = 255;
+  var a_min = 0;
 
   var f_max = frequency_data[0];
   var f_min = frequency_data[0];

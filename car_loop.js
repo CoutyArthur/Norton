@@ -20,6 +20,13 @@ function loopCar(tableauPosition, tableauFrequency){
     var newCar;
     var car;
 
+    var geometry = new THREE.SphereGeometry(1, 32, 32);
+    var material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    var sphere = new THREE.Mesh(geometry, material);
+    sphere.name = 'sphere';
+    sphere.visible = false;
+    scene.add(sphere);
+
     const loader = new THREE.GLTFLoader();
     const assetEl = document.querySelector('#car1');
     const assetUrl = assetEl.getAttribute('src');
@@ -33,7 +40,6 @@ function loopCar(tableauPosition, tableauFrequency){
             car.visible = false;
             car.position.set(0,10,-25);
             scene.add(car);
-        var count = 0;
         for(var i=0; i<tableauPosition.length; i++){
 
             if(Math.sqrt(Math.pow(tableauPosition[i][1].x - tableauPosition[i][0].x, 2) + Math.pow(tableauPosition[i][1].y - tableauPosition[i][0].y, 2)) > 0.5){
@@ -41,10 +47,9 @@ function loopCar(tableauPosition, tableauFrequency){
                 newCar = createCar(tableauPosition[i][0], tableauPosition[i][1], tableauFrequency[i]).object3D;
                 //console.log(newCar);
                 groupCar.add(newCar);
-                count++;
             }       
         }
-        console.log(count, tableauPosition.length);
+
         scene.add(groupCar);
         console.log(scene);
     });
